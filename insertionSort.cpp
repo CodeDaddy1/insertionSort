@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <chrono>
 
 void insertionSort(std::vector<int> & array){
     int n = array.size();
@@ -19,7 +20,9 @@ void insertionSort(std::vector<int> & array){
 
 int main(){
 
-const int arraySize = 11;
+auto start_time = std::chrono::high_resolution_clock::now();
+
+const int arraySize = 10000;
 std::vector<int> nonSortedArray;
 
 std::srand(std::time(0));
@@ -46,6 +49,14 @@ std::cout << "Sorted array: " << std::endl;
         std::cout << num << " ";
     }
 std::cout << std::endl;
+std::cout << std::endl;
 
+auto end_time = std::chrono::high_resolution_clock::now();
 
+auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+
+// Display the runtime in microseconds
+std::cout << "Runtime: " << duration.count() << " microseconds" << std::endl;
+
+    return 0;
 }
